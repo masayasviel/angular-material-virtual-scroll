@@ -1,0 +1,17 @@
+<div class="viewport">
+  <cdk-virtual-scroll-viewport itemSize="50" style="height: 100%;">
+    <ng-container *cdkVirtualFor="let node of flattenData; templateCacheSize: 0">
+      <div [style.padding-left]="node.level * 32 + 'px'" class="list-item">
+        <div>{{ node.name }}</div>
+
+        @if (node.hasChild) {
+          <button [attr.aria-label]="'toggle ' + node.id" (click)="changeExpand(node)" mat-icon-button>
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{ node.expanded ? 'expand_more' : 'chevron_right' }}
+            </mat-icon>
+          </button>
+        }
+      </div>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</div>
